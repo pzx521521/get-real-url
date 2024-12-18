@@ -1,0 +1,24 @@
+name: Windows Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Go
+        uses: actions/setup-go@v2
+
+      - name: Build for Windows
+        run: GOOS=windows GOARCH=amd64 go build -o myapp.exe
+
+      - name: Upload Windows build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: windows-build
+          path: myapp.exe
