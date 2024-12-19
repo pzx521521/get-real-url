@@ -18,7 +18,7 @@ jobs:
         run: go build -o myapp.exe
 
       - name: Upload Windows build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: windows-build
           path: myapp.exe
