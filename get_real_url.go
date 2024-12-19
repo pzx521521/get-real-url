@@ -49,10 +49,14 @@ func getRealUrl(urls []string) map[string]string {
 			}
 			wg.Add(1)
 			uri = url
-			w.Navigate(url)
+			w.Dispatch(func() {
+				w.Navigate(url)
+			})
 			wg.Wait()
 		}
-		w.Terminate()
+		w.Dispatch(func() {
+			w.Terminate()
+		})
 	}()
 	w.Run()
 	return urlMap
